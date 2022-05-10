@@ -37,6 +37,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/apollo',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -44,7 +45,19 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
   },
-
+  apollo: {
+    cookieAttributes: {
+      expires: 1,
+      path: '/',
+      secure: false,
+      sameSite: 'Lax',
+    },
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://nuxt-graphql.hasura.app/v1/graphql',
+      },
+    },
+  },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {

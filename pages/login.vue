@@ -1,15 +1,17 @@
 <template>
   <div class="main">
-    <b-form class="form-signin mx-auto w-100">
+    <b-form class="form-signin mx-auto w-100" @submit.prevent="onsubmit">
       <b-img-lazy center src="~/static/logo.png" alt="" width="200" />
 
       <b-form-input
+        v-model="email"
         type="email"
         class="form-control"
         placeholder="Email address"
       />
 
       <b-form-input
+        v-model="password"
         type="password"
         class="form-control"
         placeholder="Password"
@@ -28,6 +30,21 @@
 <script>
 export default {
   name: 'LoginView',
+  data() {
+    return {
+      email: '',
+      password: '',
+    }
+  },
+  methods: {
+    async onsubmit() {
+      const credential = {
+        email: this.email,
+        password: this.password,
+      }
+      await this.$store.dispatch('SIGN_IN', credential)
+    },
+  },
 }
 </script>
 

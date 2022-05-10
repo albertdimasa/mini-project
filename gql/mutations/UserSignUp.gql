@@ -1,0 +1,22 @@
+mutation UserSignUp(
+  $email: String!
+  $name: String!
+  $password: String!
+  $phone_number: bigint!
+) {
+  insert_book_barter_users(
+    objects: {
+      name: $name
+      phone_number: $phone_number
+      email: $email
+      password: $password
+    }
+  ) {
+    returning {
+      id
+      name
+      email
+      phone_number
+    }
+  }
+}

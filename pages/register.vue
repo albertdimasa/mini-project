@@ -1,21 +1,29 @@
 <template>
   <div class="main">
-    <b-form class="form-register mx-auto w-100">
+    <b-form class="form-register mx-auto w-100" @submit.prevent="onsubmit">
       <b-img-lazy center src="~/static/logo.png" alt="" width="200" />
 
-      <b-form-input type="text" class="form-control" placeholder="Name" />
+      <b-form-input
+        v-model="name"
+        type="text"
+        class="form-control"
+        placeholder="Name"
+      />
 
       <b-form-input
+        v-model="phone_number"
         type="number"
         class="form-control"
         placeholder="Phone number"
       />
       <b-form-input
+        v-model="email"
         type="email"
         class="form-control"
         placeholder="Email address"
       />
       <b-form-input
+        v-model="password"
         type="password"
         class="form-control"
         placeholder="Password"
@@ -33,8 +41,28 @@
 </template>
 
 <script>
+// import gql from 'graphql-tag'
 export default {
   name: 'RegisterView',
+  data() {
+    return {
+      name: '',
+      phone_number: '',
+      email: '',
+      password: '',
+    }
+  },
+  methods: {
+    async onsubmit() {
+      const credential = {
+        email: this.email,
+        name: this.name,
+        phone_number: this.phone_number,
+        password: this.password,
+      }
+      await this.$store.dispatch('SIGN_UP', credential)
+    },
+  },
 }
 </script>
 
