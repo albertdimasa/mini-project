@@ -2,7 +2,7 @@ import USER_SIGNUP from '~/gql/mutations/UserSignUp'
 import USER_SIGNIN from '~/gql/queries/UserSignIn'
 
 export const state = () => ({
-  user: {},
+  user: [],
   token: {},
 })
 
@@ -10,9 +10,9 @@ export const mutations = {
   SET_USER(state, user) {
     state.user = user
   },
-  SET_TOKEN(state, token) {
-    state.token = token
-  },
+  // SET_TOKEN(state, token) {
+  //   state.token = token
+  // },
 }
 
 export const actions = {
@@ -49,7 +49,8 @@ export const actions = {
       })
       // eslint-disable-next-line eqeqeq
       if (res.data.book_barter_users != '') {
-        this.$router.push({ path: 'dashboard' })
+        commit('SET_USER', payload.email)
+        this.$router.push({ path: '/' })
       } else {
         alert('Akun tidak terdaftar')
       }
@@ -70,7 +71,9 @@ export const actions = {
     // const user = await dispatch('USER_GET', payload.email)
     // commit('SET_USER', user)
   },
-
+  SIGN_OUT({ commit }) {
+    commit('SET_USER', '')
+  },
   //   async USER_GET({ commit }, payload) {
   //     const apollo = this.app.apolloProvider.defaultClient
 
