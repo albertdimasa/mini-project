@@ -10,10 +10,10 @@
         text-variant="white"
       >
         <div class="d-flex flex-column justify-content-center h-100">
-          <b-card-title class="font-weight-bold" title-tag="h1"
-            >BARTER BOOK</b-card-title
+          <b-card-title class="h1 font-weight-bold">BOOKS BARTER</b-card-title>
+          <b-card-text class="h4 font-weight-normal">
+            Bertukar Buku Lebih Mudah Dengan Kami.</b-card-text
           >
-          <b-card-text> Bertukar Buku Lebih Mudah Dengan Kami.</b-card-text>
         </div>
       </b-card>
       <hr />
