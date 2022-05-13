@@ -1,53 +1,50 @@
 <template>
-  <div>
-    <b-navbar
-      toggleable="lg"
-      type="dark"
-      style="background-color: #d9534f"
-      class="px-5"
-    >
-      <b-navbar-brand href="#">
-        <img src="~/static/logo-light.png" alt="" width="50" />
-      </b-navbar-brand>
+  <div id="main">
+    <b-container>
+      <b-navbar toggleable="lg" type="dark">
+        <b-navbar-brand href="#">
+          <img src="~/static/logo-light.png" alt="" width="50" />
+        </b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
-        <!-- Search -->
-        <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <b-form-input
-              size="md"
-              class="my-2"
-              style="padding-right: 10rem"
-              placeholder="search"
-            ></b-form-input>
-          </b-nav-form>
-        </b-navbar-nav>
-
-        <!-- Login and Register -->
-        <b-navbar-nav class="ml-auto">
-          <b-navbar-nav v-if="user == ''">
-            <b-nav-item to="login" class="mr-5">Login</b-nav-item>
-            <b-button
-              size="md"
-              to="register"
-              style="background-color: #ffad60; border-style: none"
-              >Register</b-button
-            >
+        <b-collapse id="nav-collapse" is-nav>
+          <!-- Search -->
+          <b-navbar-nav class="ml-auto">
+            <b-nav-form>
+              <b-form-input
+                size="md"
+                class="my-2"
+                style="padding-right: 10rem"
+                placeholder="search"
+              ></b-form-input>
+            </b-nav-form>
           </b-navbar-nav>
 
-          <b-nav-item-dropdown v-else right>
-            <template #button-content>
-              <em>{{ user.name }}</em>
-            </template>
-            <b-dropdown-item href="#" @click="SIGN_OUT"
-              >Sign Out</b-dropdown-item
-            >
-          </b-nav-item-dropdown>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+          <!-- Login and Register -->
+          <b-navbar-nav class="ml-auto">
+            <b-navbar-nav v-if="user == ''">
+              <b-nav-item to="login" class="mr-5">Login</b-nav-item>
+              <b-button
+                size="md"
+                to="register"
+                style="background-color: #ffad60; border-style: none"
+                >Register</b-button
+              >
+            </b-navbar-nav>
+
+            <b-nav-item-dropdown v-else right>
+              <template #button-content>
+                <em>{{ user.name }}</em>
+              </template>
+              <b-dropdown-item href="#" @click="SIGN_OUT"
+                >Sign Out</b-dropdown-item
+              >
+            </b-nav-item-dropdown>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
+    </b-container>
   </div>
 </template>
 
@@ -68,4 +65,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+#main {
+  background-color: #d9534f;
+}
+</style>
