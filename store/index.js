@@ -47,9 +47,10 @@ export const actions = {
           password: payload.password,
         },
       })
+
       // eslint-disable-next-line eqeqeq
       if (res.data.book_barter_users != '') {
-        commit('SET_USER', payload.email)
+        commit('SET_USER', res.data.book_barter_users[0])
         this.$router.push({ path: '/' })
       } else {
         alert('Akun tidak terdaftar')
@@ -58,36 +59,8 @@ export const actions = {
       alert('Login Error', e)
       throw e
     }
-
-    // // Set Token
-    // const auth = res.data.userLogin.auth
-    // commit('SET_TOKEN', {
-    //   refreshToken: auth.refreshToken,
-    //   token: auth.idToken,
-    // })
-    // await this.$apolloHelpers.onLogin(auth.idToken)
-
-    // // Get and Save User in Store
-    // const user = await dispatch('USER_GET', payload.email)
-    // commit('SET_USER', user)
   },
   SIGN_OUT({ commit }) {
     commit('SET_USER', '')
   },
-  //   async USER_GET({ commit }, payload) {
-  //     const apollo = this.app.apolloProvider.defaultClient
-
-  //     try {
-  //       await apollo.query({
-  //         query: USER_GET,
-  //         variables: {
-  //           email: payload,
-  //         },
-  //       })
-  //       this.$router.push({ path: 'login' })
-  //     } catch (e) {
-  //       alert('User get error', e)
-  //       throw e
-  //     }
-  //   },
 }

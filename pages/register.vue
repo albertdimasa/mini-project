@@ -1,8 +1,7 @@
 <template>
   <div class="main">
     <b-form class="form-register mx-auto w-100" @submit.prevent="onsubmit">
-      <b-img-lazy center src="~/static/logo.png" alt="" width="200" />
-
+      <Logo />
       <b-form-input
         v-model="name"
         type="text"

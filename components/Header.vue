@@ -10,7 +10,7 @@
         <img src="~/static/logo-light.png" alt="" width="50" />
       </b-navbar-brand>
 
-      <!-- <b-navbar-toggle target="nav-collapse"></b-navbar-toggle> -->
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <!-- Search -->
@@ -37,9 +37,9 @@
             >
           </b-navbar-nav>
 
-          <b-nav-item-dropdown v-if="user != ''" right>
+          <b-nav-item-dropdown v-else right>
             <template #button-content>
-              <em>{{ user }}</em>
+              <em>{{ user.name }}</em>
             </template>
             <b-dropdown-item href="#" @click="SIGN_OUT"
               >Sign Out</b-dropdown-item

@@ -2,6 +2,9 @@ query UserSignIn($email: String, $password: String) {
   book_barter_users(
     where: { email: { _eq: $email }, _and: { password: { _eq: $password } } }
   ) {
+    id
     name
+    phone_number
+    email
   }
 }
