@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="content">
     <Header />
-    <b-container class="mt-3">
+    <b-container class="py-3">
       <b-card
         overlay
         img-src="~/static/hero.jpg"
@@ -16,15 +16,58 @@
           >
         </div>
       </b-card>
-      <hr />
+      <div class="mt-5">
+        <template>
+          <div v-if="$apollo.queries.books.error">Ups Error</div>
+
+          <div v-else-if="$apollo.queries.books">
+            <div class="d-flex">
+              <Card
+                v-for="(book, index) in books"
+                :key="index"
+                :book="book"
+                :index="book.id"
+              />
+            </div>
+          </div>
+          <div v-else class="loading" />
+        </template>
+      </div>
     </b-container>
   </div>
 </template>
 
 <script>
+// eslint-disable-next-line import/no-named-as-default
+import gql from 'graphql-tag'
 export default {
   name: 'DashboardVue',
+  apollo: {
+    books: {
+      query() {
+        return gql`
+          query MyQuery {
+            book_barter_books {
+              id
+              title
+              summary
+              image_cover_url
+              author
+              user {
+                name
+              }
+            }
+          }
+        `
+      },
+      update: (data) => data.book_barter_books,
+    },
+  },
 }
 </script>
 
-<style></style>
+<style>
+#content {
+  background-color: #ffeead;
+}
+</style>
