@@ -43,6 +43,7 @@
 // import gql from 'graphql-tag'
 export default {
   name: 'RegisterView',
+  middleware: 'isLogin',
   data() {
     return {
       name: '',

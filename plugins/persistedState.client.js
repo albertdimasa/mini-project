@@ -5,6 +5,6 @@ import createPersistedState from 'vuex-persistedstate'
 export default ({ store }) => {
   createPersistedState({
     key: 'vuex',
-    paths: ['user'],
+    paths: ['user', 'authenticated'],
   })(store)
 }

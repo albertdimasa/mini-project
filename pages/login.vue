@@ -30,6 +30,7 @@
 <script>
 export default {
   name: 'LoginView',
+  middleware: 'isLogin',
   data() {
     return {
       email: '',

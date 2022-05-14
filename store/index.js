@@ -3,16 +3,20 @@ import USER_SIGNIN from '~/gql/queries/UserSignIn'
 
 export const state = () => ({
   user: [],
-  token: {},
+  authenticated: false,
 })
+
+export const getters = {
+  getAuthStatus: (state) => {
+    return state.authenticated
+  },
+}
 
 export const mutations = {
   SET_USER(state, user) {
     state.user = user
+    state.authenticated = !state.authenticated
   },
-  // SET_TOKEN(state, token) {
-  //   state.token = token
-  // },
 }
 
 export const actions = {
@@ -51,6 +55,7 @@ export const actions = {
       // eslint-disable-next-line eqeqeq
       if (res.data.book_barter_users != '') {
         commit('SET_USER', res.data.book_barter_users[0])
+        // commit('SET_AUTH')
         this.$router.push({ path: '/' })
       } else {
         alert('Akun tidak terdaftar')
