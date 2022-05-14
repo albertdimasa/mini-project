@@ -33,7 +33,7 @@
       </button>
       <p class="mt-1 mb-5">
         Do you have an account? please
-        <NuxtLink to="login">login</NuxtLink>
+        <NuxtLink to="/login">login</NuxtLink>
       </p>
     </b-form>
   </div>

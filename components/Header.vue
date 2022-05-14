@@ -24,10 +24,10 @@
           <!-- Login and Register -->
           <b-navbar-nav class="ml-auto">
             <b-navbar-nav v-if="user == ''">
-              <b-nav-item to="login" class="mr-5">Login</b-nav-item>
+              <b-nav-item to="/login" class="mr-5">Login</b-nav-item>
               <b-button
                 size="md"
-                to="register"
+                to="/register"
                 style="background-color: #ffad60; border-style: none"
                 >Register</b-button
               >

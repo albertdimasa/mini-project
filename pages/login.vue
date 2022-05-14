@@ -21,7 +21,8 @@
         Sign in
       </button>
       <p class="mt-1 mb-5">
-        <NuxtLink to="register">register</NuxtLink> if you don’t have an account
+        <NuxtLink to="/register">register</NuxtLink> if you don’t have an
+        account
       </p>
     </b-form>
   </div>
