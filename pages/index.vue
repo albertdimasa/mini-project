@@ -21,7 +21,7 @@
           <div v-if="$apollo.queries.books.error">Ups Error</div>
 
           <div v-else-if="$apollo.queries.books">
-            <div class="d-flex">
+            <div class="d-flex flex-wrap justify-content-around">
               <Card
                 v-for="(book, index) in books"
                 :key="index"

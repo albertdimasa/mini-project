@@ -1,8 +1,8 @@
 <template>
-  <div class="mr-2">
+  <div class="pb-3">
     <b-card
       class="overflow-hidden"
-      style="max-width: 400px"
+      style="max-width: 350px"
       :header="book.title"
       header-class="text-capitalize"
       header-tag="h5"
