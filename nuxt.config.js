@@ -64,9 +64,7 @@ export default {
       lang: 'en',
     },
   },
-  router: {
-    middleware: 'trailingSlashRedirect',
-  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }
