@@ -28,12 +28,8 @@
             <span v-if="!readMoreActivated">
               {{ book.summary.slice(0, 180) }}
             </span>
-            <span
-              v-if="!readMoreActivated"
-              id="bacalengkap"
-              @click="AKTIF_BACA"
-            >
-              (baca selengkapnya)
+            <span v-if="!readMoreActivated" id="bacalengkap" @click="AKTIF_BACA"
+              >... (baca selengkapnya)
             </span>
             <span v-if="readMoreActivated">{{ book.summary }}</span>
             <span v-if="readMoreActivated" id="bacalengkap" @click="AKTIF_BACA"

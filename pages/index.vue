@@ -45,22 +45,55 @@ export default {
   apollo: {
     books: {
       query() {
-        return gql`
-          query MyQuery {
-            book_barter_books {
-              id
-              title
-              summary
-              image_cover_url
-              author
-              user {
-                name
+        // eslint-disable-next-line eqeqeq
+        if (this.user != '') {
+          return gql`
+            query MyQuery($user: String) {
+              book_barter_books(
+                where: { user: { _not: { name: { _eq: $user } } } }
+              ) {
+                id
+                title
+                summary
+                image_cover_url
+                author
+                user {
+                  name
+                }
               }
             }
-          }
-        `
+          `
+        } else {
+          return gql`
+            query MyQuery {
+              book_barter_books {
+                id
+                title
+                summary
+                image_cover_url
+                author
+                user {
+                  name
+                }
+              }
+            }
+          `
+        }
       },
       update: (data) => data.book_barter_books,
+      variables() {
+        // eslint-disable-next-line eqeqeq
+        if (this.search != '') {
+          return {
+            user: this.user.name,
+          }
+        }
+      },
+    },
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
     },
   },
 }
