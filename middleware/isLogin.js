@@ -8,6 +8,7 @@ export default function ({ store, route, redirect }) {
     console.log(route.fullPath)
     return redirect('/')
   } else {
+    console.log(route.fullPath)
     console.log(store.state.authenticated)
   }
 }
