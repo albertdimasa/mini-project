@@ -1,0 +1,26 @@
+mutation BarterBook(
+  $book_id: Int
+  $date: date
+  $peminjam_id: Int
+  $status: Boolean = false
+  $alasan: String
+) {
+  insert_book_barter_details(
+    objects: {
+      book_id: $book_id
+      date: $date
+      peminjam_id: $peminjam_id
+      alasan: $alasan
+      status: $status
+    }
+  ) {
+    returning {
+      id
+      book_id
+      date
+      status
+      alasan
+      peminjam_id
+    }
+  }
+}

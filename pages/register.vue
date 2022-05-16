@@ -8,13 +8,14 @@
         class="form-control"
         placeholder="Name"
       />
-
-      <b-form-input
-        v-model="phone_number"
-        type="number"
-        class="form-control"
-        placeholder="Phone number"
-      />
+      <b-input-group prepend="(+62)">
+        <b-form-input
+          v-model="phone_number"
+          type="number"
+          class="form-control"
+          placeholder="Phone number"
+        />
+      </b-input-group>
       <b-form-input
         v-model="email"
         type="email"

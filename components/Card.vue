@@ -19,7 +19,13 @@
           <b-button href="#" variant="outline-danger" class="mt-3 w-100">{{
             book.user.name
           }}</b-button>
-          <b-button href="#" variant="primary" class="mt-1 w-100"
+          <b-button
+            variant="primary"
+            class="mt-1 w-100"
+            :to="{
+              name: 'slug',
+              params: { slug: TO_SLUG(book.title) },
+            }"
             >Barter</b-button
           >
         </b-col>
@@ -57,6 +63,14 @@ export default {
   methods: {
     AKTIF_BACA() {
       this.readMoreActivated = !this.readMoreActivated
+    },
+    TO_SLUG(value) {
+      value = value
+        .toLowerCase() // LowerCase
+        .replace(/\s+/g, '-') // space to -
+        .replace(/&/g, `-and-`) // & to and
+        .replace(/--/g, `-`)
+      return value
     },
   },
 }

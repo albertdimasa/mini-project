@@ -1,0 +1,12 @@
+query AllBook {
+  book_barter_books {
+    id
+    title
+    summary
+    image_cover_url
+    author
+    user {
+      name
+    }
+  }
+}

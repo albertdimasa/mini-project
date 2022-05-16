@@ -39,7 +39,9 @@
 
 <script>
 // eslint-disable-next-line import/no-named-as-default
-import gql from 'graphql-tag'
+// import gql from 'graphql-tag'
+import ALL_BOOK_WHERE_NAME from '~/gql/queries/AllBookWhereName'
+import ALL_BOOK from '~/gql/queries/AllBook'
 export default {
   name: 'DashboardVue',
   apollo: {
@@ -47,37 +49,9 @@ export default {
       query() {
         // eslint-disable-next-line eqeqeq
         if (this.user != '') {
-          return gql`
-            query MyQuery($user: String) {
-              book_barter_books(
-                where: { user: { _not: { name: { _eq: $user } } } }
-              ) {
-                id
-                title
-                summary
-                image_cover_url
-                author
-                user {
-                  name
-                }
-              }
-            }
-          `
+          return ALL_BOOK_WHERE_NAME
         } else {
-          return gql`
-            query MyQuery {
-              book_barter_books {
-                id
-                title
-                summary
-                image_cover_url
-                author
-                user {
-                  name
-                }
-              }
-            }
-          `
+          return ALL_BOOK
         }
       },
       update: (data) => data.book_barter_books,

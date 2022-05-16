@@ -2,8 +2,10 @@
   <div id="main">
     <b-container>
       <b-navbar toggleable="lg" type="dark">
-        <b-navbar-brand href="#">
-          <img src="~/static/logo-light.png" alt="" width="50" />
+        <b-navbar-brand>
+          <NuxtLink to="/">
+            <b-img-lazy center src="~/static/logo.png" alt="" width="50" />
+          </NuxtLink>
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
