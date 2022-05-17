@@ -36,6 +36,7 @@
             </b-navbar-nav>
 
             <b-nav-item-dropdown v-else right>
+              <b-dropdown-item to="/dashboard">Dashboard</b-dropdown-item>
               <template #button-content>
                 <em>{{ user.name }}</em>
               </template>
