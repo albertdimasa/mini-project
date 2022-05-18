@@ -10,7 +10,7 @@
         text-variant="white"
       >
         <div class="d-flex flex-column justify-content-center h-100">
-          <b-card-title class="h1 font-weight-bold">BOOKS BARTER</b-card-title>
+          <b-card-title class="h1 font-weight-bold">BARTER BOOK</b-card-title>
           <b-card-text class="h4 font-weight-normal">
             Bertukar Buku Lebih Mudah Dengan Kami.</b-card-text
           >
@@ -34,12 +34,11 @@
         </template>
       </div>
     </b-container>
+    <Footer />
   </div>
 </template>
 
 <script>
-// eslint-disable-next-line import/no-named-as-default
-// import gql from 'graphql-tag'
 import ALL_BOOK_WHERE_NAME from '~/gql/queries/AllBookWhereName'
 import ALL_BOOK from '~/gql/queries/AllBook'
 export default {
@@ -76,5 +75,14 @@ export default {
 <style>
 #content {
   background-color: #ffeead;
+}
+.loading {
+  margin: 20px auto 0;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
 }
 </style>

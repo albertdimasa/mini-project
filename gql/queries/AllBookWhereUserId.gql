@@ -1,0 +1,9 @@
+query AllBookWhereUserId($userId: Int) {
+  book_barter_books(where: { user_id: { _eq: $userId } }) {
+    id
+    author
+    image_cover_url
+    summary
+    title
+  }
+}

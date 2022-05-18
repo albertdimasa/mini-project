@@ -16,17 +16,9 @@
             :src="book.image_cover_url"
             :alt="book.title"
           ></b-card-img>
-          <b-button href="#" variant="outline-danger" class="mt-3 w-100">
-            {{ book.user.name }}
-          </b-button>
-          <b-button
-            variant="primary"
-            class="mt-1 w-100"
-            :to="{
-              name: 'slug',
-              params: { slug: TO_SLUG(book.title) },
-            }"
-            >Barter
+          <b-button variant="primary" class="mt-3 w-100">Edit </b-button>
+          <b-button variant="outline-danger" class="mt-2 w-100"
+            >Hapus
           </b-button>
         </b-col>
         <b-col md="8">
@@ -50,7 +42,7 @@
 
 <script>
 export default {
-  name: 'CardComponent',
+  name: 'CardDashboardComponent',
   props: {
     book: Object,
     index: Number,
@@ -64,21 +56,8 @@ export default {
     AKTIF_BACA() {
       this.readMoreActivated = !this.readMoreActivated
     },
-    TO_SLUG(value) {
-      value = value
-        .toLowerCase() // LowerCase
-        .replace(/\s+/g, '-') // space to -
-        .replace(/&/g, `-and-`) // & to and
-        .replace(/--/g, `-`)
-      return value
-    },
   },
 }
 </script>
 
-<style>
-#bacalengkap {
-  color: blue;
-  cursor: pointer;
-}
-</style>
+<style></style>

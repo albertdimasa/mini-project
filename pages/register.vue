@@ -1,12 +1,13 @@
 <template>
   <div class="main">
-    <b-form class="form-register mx-auto w-100" @submit.prevent="onsubmit">
+    <b-form class="form-register mx-auto w-100" @submit.prevent="ON_SUBMIT">
       <Logo />
       <b-form-input
         v-model="name"
         type="text"
         class="form-control"
         placeholder="Name"
+        required
       />
       <b-input-group prepend="(+62)">
         <b-form-input
@@ -14,6 +15,7 @@
           type="number"
           class="form-control"
           placeholder="Phone number"
+          required
         />
       </b-input-group>
       <b-form-input
@@ -21,12 +23,14 @@
         type="email"
         class="form-control"
         placeholder="Email address"
+        required
       />
       <b-form-input
         v-model="password"
         type="password"
         class="form-control"
         placeholder="Password"
+        required
       />
 
       <button class="w-100 btn btn-lg btn-primary mt-4" type="submit">
@@ -54,7 +58,7 @@ export default {
     }
   },
   methods: {
-    async onsubmit() {
+    async ON_SUBMIT() {
       const credential = {
         email: this.email,
         name: this.name,

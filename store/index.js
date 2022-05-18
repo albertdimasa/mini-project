@@ -2,6 +2,7 @@ import USER_SIGNUP from '~/gql/mutations/UserSignUp'
 import USER_SIGNIN from '~/gql/queries/UserSignIn'
 import ALL_BOOK from '~/gql/queries/AllBook'
 import BARTER_BOOK from '~/gql/mutations/BarterBook'
+import INSERT_BOOK from '~/gql/mutations/InsertBook'
 
 export const state = () => ({
   user: [],
@@ -68,6 +69,7 @@ export const actions = {
 
   SIGN_OUT({ commit }) {
     commit('SET_USER', '')
+    this.$router.push('/')
   },
 
   async GET_BOOK({ commit }, slug) {
@@ -112,6 +114,26 @@ export const actions = {
       this.$router.push('/')
     } catch (e) {
       alert('Barter Book error', e)
+      throw e
+    }
+  },
+
+  async ADD_BOOK({ commit }, book) {
+    const apollo = this.app.apolloProvider.defaultClient
+
+    try {
+      await apollo.mutate({
+        mutation: INSERT_BOOK,
+        variables: {
+          title: book.title,
+          summary: book.summary,
+          author: book.author,
+          image_cover_url: book.image_cover_url,
+          user_id: book.user_id,
+        },
+      })
+    } catch (e) {
+      alert('Add Book error', e)
       throw e
     }
   },

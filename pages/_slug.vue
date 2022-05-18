@@ -32,26 +32,6 @@
             <b-form-text>
               Masukkan alasanmu kenapa memerlukan buku ini.
             </b-form-text>
-            <!-- <b-form-input
-              v-model="name"
-              class="mr-sm-2"
-              placeholder="Nama lengkap"
-              :value="user.name"
-              id="nama"
-            ></b-form-input>
-
-            <b-input-group prepend="(+62)" class="mr-sm-2">
-              <b-form-input
-                v-model="phone"
-                placeholder="Phone number"
-                :value="user.phone_number"
-              ></b-form-input>
-            </b-input-group>
-            <b-form-input
-              v-model="email"
-              placeholder="Email"
-              :value="user.email"
-            ></b-form-input> -->
             <b-button
               class="mt-3"
               type="submit"
@@ -87,8 +67,8 @@ export default {
     this.GET_BOOK(this.$route.params.slug)
   },
   methods: {
-    GET_BOOK(slug) {
-      this.$store.dispatch('GET_BOOK', slug)
+    async GET_BOOK(slug) {
+      await this.$store.dispatch('GET_BOOK', slug)
     },
     toDate() {
       const today = new Date()

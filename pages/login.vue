@@ -8,6 +8,7 @@
         type="email"
         class="form-control"
         placeholder="Email address"
+        required
       />
 
       <b-form-input
@@ -15,6 +16,7 @@
         type="password"
         class="form-control"
         placeholder="Password"
+        required
       />
 
       <button class="w-100 btn btn-lg btn-primary mt-4" type="submit">

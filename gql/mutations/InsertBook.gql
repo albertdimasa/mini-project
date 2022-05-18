@@ -1,0 +1,22 @@
+mutation InsertBook(
+  $title: String
+  $summary: String
+  $author: String
+  $image_cover_url: String
+  $user_id: Int
+) {
+  insert_book_barter_books_one(
+    object: {
+      author: $author
+      image_cover_url: $image_cover_url
+      summary: $summary
+      title: $title
+      user_id: $user_id
+    }
+  ) {
+    title
+    summary
+    image_cover_url
+    author
+  }
+}

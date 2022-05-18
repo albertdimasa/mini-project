@@ -3,9 +3,7 @@
     <b-container>
       <b-navbar toggleable="lg" type="dark">
         <b-navbar-brand>
-          <NuxtLink to="/">
-            <b-img-lazy center src="~/static/logo.png" alt="" width="50" />
-          </NuxtLink>
+          <LogoMini />
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -36,13 +34,11 @@
             </b-navbar-nav>
 
             <b-nav-item-dropdown v-else right>
-              <b-dropdown-item to="/dashboard">Dashboard</b-dropdown-item>
               <template #button-content>
-                <em>{{ user.name }}</em>
+                <b>{{ user.name }}</b>
               </template>
-              <b-dropdown-item href="#" @click="SIGN_OUT"
-                >Sign Out</b-dropdown-item
-              >
+              <b-dropdown-item to="/dashboard">Dashboard</b-dropdown-item>
+              <b-dropdown-item @click="SIGN_OUT">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
