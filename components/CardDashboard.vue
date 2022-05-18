@@ -16,12 +16,42 @@
             :src="book.image_cover_url"
             :alt="book.title"
           ></b-card-img>
-          <b-button variant="primary" class="mt-3 w-100">Edit </b-button>
-          <b-button variant="outline-danger" class="mt-2 w-100"
-            >Hapus
-          </b-button>
+          <b-button variant="primary" class="mt-2 w-100">Edit </b-button>
+          <b-dropdown
+            text="Status"
+            variant="outline-danger"
+            class="mt-2 w-100"
+            dropup
+          >
+            <b-dropdown-item @click="CHANGE_STATUS(book.id, 'tersedia')"
+              >Tersedia</b-dropdown-item
+            >
+            <b-dropdown-item @click="CHANGE_STATUS(book.id, 'tersembunyi')"
+              >Sembunyikan</b-dropdown-item
+            >
+            <b-dropdown-item @click="CHANGE_STATUS(book.id, 'barter')"
+              >Barter</b-dropdown-item
+            >
+          </b-dropdown>
         </b-col>
+
         <b-col md="8">
+          <b-badge
+            v-if="book.status == 'tersembunyi'"
+            variant="secondary"
+            class="mx-3 text-capitalize"
+            >{{ book.status }}</b-badge
+          >
+          <b-badge
+            v-else-if="book.status == 'barter'"
+            variant="info"
+            class="mx-3 text-capitalize"
+            >{{ book.status }}</b-badge
+          >
+          <b-badge v-else variant="success" class="mx-3 text-capitalize">{{
+            book.status
+          }}</b-badge>
+
           <b-card-text class="mx-3 text-break text-justify">
             <span v-if="!readMoreActivated">
               {{ book.summary.slice(0, 180) }}
@@ -55,6 +85,13 @@ export default {
   methods: {
     AKTIF_BACA() {
       this.readMoreActivated = !this.readMoreActivated
+    },
+    CHANGE_STATUS(id, statusBook) {
+      const data = {
+        bookId: id,
+        status: statusBook,
+      }
+      this.$store.dispatch('CHANGE_STATUS', data)
     },
   },
 }

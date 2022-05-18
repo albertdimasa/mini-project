@@ -1,8 +1,9 @@
 import USER_SIGNUP from '~/gql/mutations/UserSignUp'
-import USER_SIGNIN from '~/gql/queries/UserSignIn'
-import ALL_BOOK from '~/gql/queries/AllBook'
 import BARTER_BOOK from '~/gql/mutations/BarterBook'
 import INSERT_BOOK from '~/gql/mutations/InsertBook'
+import STATUS_BOOK from '~/gql/mutations/ChangeStatus'
+import USER_SIGNIN from '~/gql/queries/UserSignIn'
+import ALL_BOOK from '~/gql/queries/AllBook'
 
 export const state = () => ({
   user: [],
@@ -134,6 +135,23 @@ export const actions = {
       })
     } catch (e) {
       alert('Add Book error', e)
+      throw e
+    }
+  },
+
+  async CHANGE_STATUS({ commit }, payload) {
+    const apollo = this.app.apolloProvider.defaultClient
+
+    try {
+      await apollo.mutate({
+        mutation: STATUS_BOOK,
+        variables: {
+          bookId: payload.bookId,
+          status: payload.status,
+        },
+      })
+    } catch (e) {
+      alert('Hide Book error', e)
       throw e
     }
   },

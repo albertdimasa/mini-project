@@ -1,7 +1,7 @@
 <template>
-  <div id="content">
+  <div id="detailBook">
     <Header />
-    <b-container class="py-3">
+    <b-container id="bookContent" class="py-3">
       <b-row class="w-100 py-3 bg-white">
         <b-col md="3">
           <b-img-lazy
@@ -95,8 +95,12 @@ export default {
 }
 </script>
 
-<style>
-#content {
+<style scoped>
+#detailBook {
   background-color: #ffeead;
+  height: 100vh;
+}
+#bookContent {
+  margin-top: 5rem;
 }
 </style>

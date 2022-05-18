@@ -1,10 +1,11 @@
 query AllBook {
-  book_barter_books {
+  book_barter_books(where: { status: { _eq: "tersedia" } }) {
     id
     title
     summary
     image_cover_url
     author
+    status
     user {
       name
     }

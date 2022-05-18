@@ -1,0 +1,15 @@
+mutation ChangeStatus($status: String, $bookId: Int) {
+  update_book_barter_books(
+    _set: { status: $status }
+    where: { id: { _eq: $bookId } }
+  ) {
+    returning {
+      id
+      title
+      summary
+      status
+      image_cover_url
+      author
+    }
+  }
+}

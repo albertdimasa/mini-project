@@ -1,0 +1,20 @@
+query AllBookLandingPage($user: Int) {
+  book_barter_books(
+    where: {
+      user: { _not: { id: { _eq: $user } } }
+      status: { _eq: "tersedia" }
+    }
+  ) {
+    id
+    title
+    summary
+    image_cover_url
+    author
+    status
+    user {
+      name
+      email
+      phone_number
+    }
+  }
+}

@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import ALL_BOOK_WHERE_NAME from '~/gql/queries/AllBookWhereName'
+import ALL_BOOK_LANDING_PAGE from '~/gql/queries/AllBookLandingPage'
 import ALL_BOOK from '~/gql/queries/AllBook'
 export default {
   name: 'DashboardVue',
@@ -48,7 +48,7 @@ export default {
       query() {
         // eslint-disable-next-line eqeqeq
         if (this.user != '') {
-          return ALL_BOOK_WHERE_NAME
+          return ALL_BOOK_LANDING_PAGE
         } else {
           return ALL_BOOK
         }
@@ -58,7 +58,7 @@ export default {
         // eslint-disable-next-line eqeqeq
         if (this.search != '') {
           return {
-            user: this.user.name,
+            user: this.user.id,
           }
         }
       },
