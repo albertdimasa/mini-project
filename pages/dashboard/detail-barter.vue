@@ -14,6 +14,7 @@
         :items="details"
         :fields="fields"
         caption-top
+        responsive
       >
         <template #table-caption
           >Berikut adalah buku pemilik yang dipinjam pengguna lain.</template
@@ -95,6 +96,7 @@
         :items="details_user"
         :fields="fields_user"
         caption-top
+        responsive
       >
         <template #table-caption
           >Berikut adalah buku pengguna lain yang anda pinjam.</template
