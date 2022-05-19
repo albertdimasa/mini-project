@@ -35,7 +35,7 @@
 
             <b-nav-item-dropdown v-else right>
               <template #button-content>
-                <b>{{ user.name }}</b>
+                <b class="text-capitalize">{{ user.name }}</b>
               </template>
               <b-dropdown-item to="/dashboard">Dashboard</b-dropdown-item>
               <b-dropdown-item @click="SIGN_OUT">Sign Out</b-dropdown-item>

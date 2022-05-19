@@ -30,12 +30,9 @@
           </b-button>
         </b-col>
         <b-col md="8">
-          <b-badge variant="success" class="mx-3 text-capitalize">{{
-            book.status
-          }}</b-badge>
           <b-card-text class="mx-3 text-break text-justify">
             <span v-if="!readMoreActivated">
-              {{ book.summary.slice(0, 180) }}
+              {{ book.summary.slice(0, 170) }}
             </span>
             <span v-if="!readMoreActivated" id="bacalengkap" @click="AKTIF_BACA"
               >... (baca selengkapnya)

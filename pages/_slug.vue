@@ -33,7 +33,7 @@
               Masukkan alasanmu kenapa memerlukan buku ini.
             </b-form-text>
             <b-button
-              class="mt-3"
+              class="mt-3 font-weight-bold"
               type="submit"
               size="md"
               style="background-color: #d9534f; border-style: none"

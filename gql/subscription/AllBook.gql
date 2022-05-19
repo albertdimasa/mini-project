@@ -1,0 +1,13 @@
+subscription AllBook {
+  book_barter_books(where: { status: { _eq: "tersedia" } }) {
+    author
+    id
+    image_cover_url
+    status
+    summary
+    title
+    user {
+      name
+    }
+  }
+}
