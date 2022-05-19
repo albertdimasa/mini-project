@@ -1,7 +1,10 @@
+import DELETE_DETAIL_BARTER from '~/gql/mutations/DeleteDetailBarter'
+import BARTER_STATUS_CHANGE from '~/gql/mutations/BarterStatusChange'
+import STATUS_BARTER from '~/gql/mutations/StatusBarter'
+import STATUS_BOOK from '~/gql/mutations/ChangeStatus'
 import USER_SIGNUP from '~/gql/mutations/UserSignUp'
 import BARTER_BOOK from '~/gql/mutations/BarterBook'
 import INSERT_BOOK from '~/gql/mutations/InsertBook'
-import STATUS_BOOK from '~/gql/mutations/ChangeStatus'
 import USER_SIGNIN from '~/gql/queries/UserSignIn'
 import ALL_BOOK from '~/gql/queries/AllBook'
 
@@ -152,6 +155,50 @@ export const actions = {
       })
     } catch (e) {
       alert('Hide Book error', e)
+      throw e
+    }
+  },
+  async STATUS_BARTER({ dispatch }, payload) {
+    const apollo = this.app.apolloProvider.defaultClient
+
+    try {
+      await apollo.mutate({
+        mutation: STATUS_BARTER,
+        variables: {
+          detailId: payload.detailId,
+          status: payload.status,
+        },
+      })
+      dispatch('BARTER_STATUS_CHANGE')
+    } catch (e) {
+      alert('Status Barter error', e)
+      throw e
+    }
+  },
+  async BARTER_STATUS_CHANGE() {
+    const apollo = this.app.apolloProvider.defaultClient
+
+    try {
+      await apollo.mutate({
+        mutation: BARTER_STATUS_CHANGE,
+      })
+    } catch (e) {
+      alert('Barter Status Change error', e)
+      throw e
+    }
+  },
+  async DELETE_BARTER({ commit }, detailId) {
+    const apollo = this.app.apolloProvider.defaultClient
+
+    try {
+      await apollo.mutate({
+        mutation: DELETE_DETAIL_BARTER,
+        variables: {
+          id: detailId,
+        },
+      })
+    } catch (e) {
+      alert('Delete detail barter error', e)
       throw e
     }
   },

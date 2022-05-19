@@ -11,10 +11,30 @@
         table-variant="light"
         :items="details"
         :fields="fields"
-        :tbody-tr-class="rowClass"
       >
-        <template #cell(action)="data">
+        <template #cell(status)="data">
           <b-button
+            v-if="data.item.status == false"
+            v-b-tooltip.hover
+            title="Menunggu"
+            variant="warning"
+            size="sm"
+            ><b-icon icon="cloud-haze"></b-icon>
+          </b-button>
+          <b-button
+            v-else
+            v-b-tooltip.hover
+            title="Disetujui"
+            variant="primary"
+            size="sm"
+            ><b-icon icon="check"></b-icon>
+          </b-button>
+        </template>
+
+        <template #cell(kontak)="data">
+          <b-button
+            v-b-tooltip.hover
+            title="Whatsapp"
             :href="
               'https://api.whatsapp.com/send?phone=62' +
               data.item.user.phone_number
@@ -22,31 +42,38 @@
             target="_blank"
             variant="success"
             size="sm"
-            >Whatsapp</b-button
-          >
+            ><b-icon icon="whatsapp"></b-icon>
+          </b-button>
           <b-button
+            v-b-tooltip.hover
+            title="Email"
             :href="'mailto:' + data.item.user.email"
             target="_blank"
             variant="info"
             size="sm"
-            >Email</b-button
           >
+            <b-icon icon="chat-left-text"></b-icon>
+          </b-button>
         </template>
-        <template #cell(status)="data">
+
+        <template #cell(action)="data">
           <b-button
-            v-if="status == false"
+            v-b-tooltip.hover
+            title="Hapus"
             variant="danger"
             size="sm"
-            @click="changeStatus(data.item.status)"
-            >Review</b-button
-          >
+            @click="DELETE_BARTER(data.item.id)"
+            ><b-icon icon="trash"></b-icon>
+          </b-button>
           <b-button
-            v-else
-            variant="success"
+            v-b-tooltip.hover
+            title="Ubah Status"
+            variant="secondary"
             size="sm"
-            @click="changeStatus(data.item.status)"
-            >Barter</b-button
+            @click="STATUS_BARTER(data.item.status, data.item.id)"
           >
+            <b-icon icon="caret-down"></b-icon>
+          </b-button>
         </template>
       </b-table>
     </b-container>
@@ -55,6 +82,7 @@
 
 <script>
 import DETAIL_BARTER_BY_USER from '~/gql/queries/DetailBarterByUser'
+import DETAIL_BARTER_SUB from '~/gql/subscription/DetailBarterSubs'
 export default {
   name: 'DetailBarterView',
   data() {
@@ -82,8 +110,12 @@ export default {
         },
         {
           key: 'status',
-          label: 'Status',
+          label: 'Barter',
           sortable: true,
+        },
+        {
+          key: 'kontak',
+          label: 'Kontak',
         },
         {
           key: 'action',
@@ -97,12 +129,22 @@ export default {
       query: DETAIL_BARTER_BY_USER,
       update: (data) => data.book_barter_details,
       variables() {
-        // eslint-disable-next-line eqeqeq
-        if (this.search != '') {
+        return {
+          user: this.user.id,
+        }
+      },
+      subscribeToMore: {
+        document: DETAIL_BARTER_SUB,
+        variables() {
           return {
             user: this.user.id,
           }
-        }
+        },
+        updateQuery: (prev, { subscriptionData }) => {
+          return {
+            book_barter_details: subscriptionData.data.book_barter_details,
+          }
+        },
       },
     },
   },
@@ -112,10 +154,15 @@ export default {
     },
   },
   methods: {
-    rowClass(item, type) {
-      if (!item || type !== 'column') return
-      if (item.status === true) return 'table-success'
-      if (item.status === false) return 'table-danger'
+    async STATUS_BARTER(value, id) {
+      const data = {
+        detailId: id,
+        status: !value,
+      }
+      await this.$store.dispatch('STATUS_BARTER', data)
+    },
+    async DELETE_BARTER(id) {
+      await this.$store.dispatch('DELETE_BARTER', id)
     },
   },
 }

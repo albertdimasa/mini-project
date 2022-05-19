@@ -1,0 +1,7 @@
+mutation DeleteDetailBarter($id: Int) {
+  delete_book_barter_details(where: { id: { _eq: $id } }) {
+    returning {
+      id
+    }
+  }
+}

@@ -1,0 +1,21 @@
+mutation StatusBarter($detailId: Int, $status: Boolean) {
+  update_book_barter_details(
+    where: { id: { _eq: $detailId } }
+    _set: { status: $status }
+  ) {
+    returning {
+      id
+      date
+      alasan
+      book {
+        title
+      }
+      user {
+        name
+        email
+        phone_number
+      }
+      status
+    }
+  }
+}

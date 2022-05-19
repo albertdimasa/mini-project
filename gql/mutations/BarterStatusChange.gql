@@ -1,0 +1,10 @@
+mutation BarterStatusChange {
+  update_book_barter_books(
+    where: { details: { status: { _eq: true } } }
+    _set: { status: "barter" }
+  ) {
+    returning {
+      id
+    }
+  }
+}

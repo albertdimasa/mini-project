@@ -29,6 +29,7 @@
 
 <script>
 import ALL_BOOK_WHERE_USERID from '~/gql/queries/AllBookWhereUserId'
+import ALL_BOOK_SUBS from '~/gql/subscription/AllBookSubs'
 export default {
   name: 'BookView',
   middleware: 'loginOrNot',
@@ -40,6 +41,19 @@ export default {
         return {
           userId: this.user.id,
         }
+      },
+      subscribeToMore: {
+        document: ALL_BOOK_SUBS,
+        variables() {
+          return {
+            userId: this.user.id,
+          }
+        },
+        updateQuery: (prev, { subscriptionData }) => {
+          return {
+            book_barter_books: subscriptionData.data.book_barter_books,
+          }
+        },
       },
     },
   },

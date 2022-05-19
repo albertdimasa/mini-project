@@ -1,0 +1,16 @@
+subscription DetailBarterSubs($user: Int!) {
+  book_barter_details(where: { book: { user_id: { _eq: $user } } }) {
+    id
+    date
+    alasan
+    book {
+      title
+    }
+    user {
+      name
+      email
+      phone_number
+    }
+    status
+  }
+}

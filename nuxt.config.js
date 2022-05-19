@@ -45,6 +45,9 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
   },
+  bootstrapVue: {
+    icons: true,
+  },
   apollo: {
     cookieAttributes: {
       expires: 1,
@@ -55,6 +58,7 @@ export default {
     clientConfigs: {
       default: {
         httpEndpoint: 'https://nuxt-graphql.hasura.app/v1/graphql',
+        wsEndpoint: 'wss://nuxt-graphql.hasura.app/v1/graphql',
       },
     },
   },
