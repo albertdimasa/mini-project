@@ -24,7 +24,7 @@
             <b-form-textarea
               id="textarea"
               v-model="alasan"
-              placeholder="Enter something..."
+              placeholder="Masukkan alasanmu..."
               rows="3"
               no-resize
               required

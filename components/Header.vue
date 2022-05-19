@@ -10,7 +10,7 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <!-- Search -->
-          <b-navbar-nav class="ml-auto">
+          <!-- <b-navbar-nav class="ml-auto">
             <b-nav-form>
               <b-form-input
                 size="md"
@@ -19,7 +19,7 @@
                 placeholder="search"
               ></b-form-input>
             </b-nav-form>
-          </b-navbar-nav>
+          </b-navbar-nav> -->
 
           <!-- Login and Register -->
           <b-navbar-nav class="ml-auto">
@@ -35,9 +35,11 @@
 
             <b-nav-item-dropdown v-else right>
               <template #button-content>
-                <b class="text-capitalize">{{ user.name }}</b>
+                <b class="text-capitalize text-light">Hi, {{ user.name }}</b>
               </template>
-              <b-dropdown-item to="/dashboard">Dashboard</b-dropdown-item>
+              <b-dropdown-item to="/dashboard/buku"
+                >Koleksi Buku</b-dropdown-item
+              >
               <b-dropdown-item @click="SIGN_OUT">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>

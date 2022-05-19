@@ -189,7 +189,7 @@ export const actions = {
   },
   async BARTER_STATUS_CHANGE({ commit }, payload) {
     const apollo = this.app.apolloProvider.defaultClient
-    console.log(payload)
+
     try {
       await apollo.mutate({
         mutation: BARTER_STATUS_CHANGE,

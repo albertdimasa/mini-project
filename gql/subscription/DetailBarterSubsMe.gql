@@ -1,0 +1,15 @@
+subscription DetailBarterSubsMe($userId: Int) {
+  book_barter_details(where: { peminjam_id: { _eq: $userId } }) {
+    id
+    date
+    alasan
+    book {
+      id
+      title
+      user {
+        name
+      }
+    }
+    status
+  }
+}

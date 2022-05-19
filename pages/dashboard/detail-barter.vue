@@ -3,6 +3,8 @@
     <Sidebar />
     <b-container class="py-3 vw-100">
       <SubHeader name="Detail Barter" />
+
+      <!-- Tabel Peminjam Buku -->
       <b-table
         class="mt-5"
         striped
@@ -11,7 +13,11 @@
         table-variant="light"
         :items="details"
         :fields="fields"
+        caption-top
       >
+        <template #table-caption
+          >Berikut adalah buku pemilik yang dipinjam pengguna lain.</template
+        >
         <template #cell(status)="data">
           <b-button
             v-if="data.item.status == false"
@@ -78,13 +84,49 @@
           </b-button>
         </template>
       </b-table>
+
+      <!-- Tabel Buku Yang Dipinjam -->
+      <b-table
+        class="mt-5"
+        striped
+        hover
+        bordered
+        table-variant="light"
+        :items="details_user"
+        :fields="fields_user"
+        caption-top
+      >
+        <template #table-caption
+          >Berikut adalah buku pengguna lain yang anda pinjam.</template
+        >
+        <template #cell(status)="data">
+          <b-button
+            v-if="data.item.status == false"
+            v-b-tooltip.hover
+            title="Menunggu"
+            variant="warning"
+            size="sm"
+            ><b-icon icon="cloud-haze"></b-icon>
+          </b-button>
+          <b-button
+            v-else
+            v-b-tooltip.hover
+            title="Disetujui"
+            variant="primary"
+            size="sm"
+            ><b-icon icon="check"></b-icon>
+          </b-button>
+        </template>
+      </b-table>
     </b-container>
   </div>
 </template>
 
 <script>
 import DETAIL_BARTER_BY_USER from '~/gql/queries/DetailBarterByUser'
+import DETAIL_BARTER from '~/gql/queries/DetailBarter'
 import DETAIL_BARTER_SUB from '~/gql/subscription/DetailBarterSubs'
+import DETAIL_BARTER_SUB_ME from '~/gql/subscription/DetailBarterSubsMe'
 export default {
   name: 'DetailBarterView',
   data() {
@@ -124,6 +166,33 @@ export default {
           label: 'Action',
         },
       ],
+      fields_user: [
+        {
+          key: 'date',
+          label: 'Tanggal',
+          sortable: true,
+        },
+        {
+          key: 'book.title',
+          label: 'Judul Buku',
+          sortable: true,
+        },
+        {
+          key: 'alasan',
+          label: 'Alasan',
+          sortable: true,
+        },
+        {
+          key: 'book.user.name',
+          label: 'Nama Pemilik',
+          sortable: true,
+        },
+        {
+          key: 'status',
+          label: 'Barter',
+          sortable: true,
+        },
+      ],
     }
   },
   apollo: {
@@ -140,6 +209,28 @@ export default {
         variables() {
           return {
             user: this.user.id,
+          }
+        },
+        updateQuery: (prev, { subscriptionData }) => {
+          return {
+            book_barter_details: subscriptionData.data.book_barter_details,
+          }
+        },
+      },
+    },
+    details_user: {
+      query: DETAIL_BARTER,
+      update: (data) => data.book_barter_details,
+      variables() {
+        return {
+          user: this.user.id,
+        }
+      },
+      subscribeToMore: {
+        document: DETAIL_BARTER_SUB_ME,
+        variables() {
+          return {
+            userId: this.user.id,
           }
         },
         updateQuery: (prev, { subscriptionData }) => {
