@@ -4,6 +4,7 @@ query DetailBarterByUser($user: Int) {
     date
     alasan
     book {
+      id
       title
     }
     user {

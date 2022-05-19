@@ -169,18 +169,34 @@ export const actions = {
           status: payload.status,
         },
       })
-      dispatch('BARTER_STATUS_CHANGE')
+
+      // eslint-disable-next-line eqeqeq
+      if (payload.status == true) {
+        dispatch('BARTER_STATUS_CHANGE', {
+          book: payload.bookId,
+          status: 'barter',
+        })
+      } else {
+        dispatch('BARTER_STATUS_CHANGE', {
+          book: payload.bookId,
+          status: 'tersedia',
+        })
+      }
     } catch (e) {
       alert('Status Barter error', e)
       throw e
     }
   },
-  async BARTER_STATUS_CHANGE() {
+  async BARTER_STATUS_CHANGE({ commit }, payload) {
     const apollo = this.app.apolloProvider.defaultClient
-
+    console.log(payload)
     try {
       await apollo.mutate({
         mutation: BARTER_STATUS_CHANGE,
+        variables: {
+          bookId: payload.book,
+          status: payload.status,
+        },
       })
     } catch (e) {
       alert('Barter Status Change error', e)

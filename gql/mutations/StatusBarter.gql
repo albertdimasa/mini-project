@@ -8,6 +8,7 @@ mutation StatusBarter($detailId: Int, $status: Boolean) {
       date
       alasan
       book {
+        id
         title
       }
       user {

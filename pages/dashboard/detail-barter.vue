@@ -70,7 +70,9 @@
             title="Ubah Status"
             variant="secondary"
             size="sm"
-            @click="STATUS_BARTER(data.item.status, data.item.id)"
+            @click="
+              STATUS_BARTER(data.item.status, data.item.id, data.item.book.id)
+            "
           >
             <b-icon icon="caret-down"></b-icon>
           </b-button>
@@ -154,10 +156,11 @@ export default {
     },
   },
   methods: {
-    async STATUS_BARTER(value, id) {
+    async STATUS_BARTER(value, id, book) {
       const data = {
         detailId: id,
         status: !value,
+        bookId: book,
       }
       await this.$store.dispatch('STATUS_BARTER', data)
     },

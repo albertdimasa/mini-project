@@ -4,6 +4,7 @@ subscription DetailBarterSubs($user: Int!) {
     date
     alasan
     book {
+      id
       title
     }
     user {

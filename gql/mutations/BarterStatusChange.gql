@@ -1,7 +1,7 @@
-mutation BarterStatusChange {
+mutation BarterStatusChange($status: String, $bookId: Int) {
   update_book_barter_books(
-    where: { details: { status: { _eq: true } } }
-    _set: { status: "barter" }
+    where: { id: { _eq: $bookId } }
+    _set: { status: $status }
   ) {
     returning {
       id
