@@ -223,7 +223,7 @@ export default {
       update: (data) => data.book_barter_details,
       variables() {
         return {
-          user: this.user.id,
+          userId: this.user.id,
         }
       },
       subscribeToMore: {
