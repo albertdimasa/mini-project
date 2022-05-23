@@ -1,6 +1,12 @@
 <template>
   <NuxtLink to="/">
-    <b-img-lazy center src="~/static/logo-light.png" alt="" width="50" />
+    <b-img-lazy
+      center
+      src="~/static/logo-light.png"
+      alt=""
+      width="40"
+      class="mini"
+    />
   </NuxtLink>
 </template>
 
@@ -10,4 +16,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped></style>

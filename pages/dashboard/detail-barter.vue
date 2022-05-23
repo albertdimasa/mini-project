@@ -1,7 +1,7 @@
 <template>
   <div id="content" class="d-flex">
     <Sidebar />
-    <b-container class="py-3 vw-100">
+    <b-col cols="10" class="py-3">
       <SubHeader name="Detail Barter" />
 
       <!-- Tabel Peminjam Buku -->
@@ -120,7 +120,7 @@
           </b-button>
         </template>
       </b-table>
-    </b-container>
+    </b-col>
   </div>
 </template>
 

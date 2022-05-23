@@ -3,9 +3,9 @@
     <Sidebar />
     <b-container class="py-3 vw-100">
       <SubHeader name="Koleksi Buku" />
-      <b-button variant="success" to="/dashboard/tambah-buku"
-        >Tambah Buku</b-button
-      >
+      <b-button variant="success" to="/dashboard/tambah-buku">
+        Tambah Buku
+      </b-button>
       <div class="mt-3">
         <template>
           <div v-if="$apollo.queries.books.error">Ups Error</div>
@@ -66,9 +66,6 @@ export default {
 </script>
 
 <style>
-#content {
-  background-color: #ffeead;
-}
 .loading {
   margin: 20px auto 0;
   border: 16px solid #f3f3f3; /* Light grey */

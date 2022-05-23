@@ -97,8 +97,4 @@ export default {
 }
 </script>
 
-<style>
-#content {
-  background-color: #ffeead;
-}
-</style>
+<style></style>
